@@ -1,6 +1,6 @@
 package Figuras;
 
-public class Problema {
+public class Problema{
 
 	public static void main(String[] args) {
 		Circunferencia c1=new Circunferencia(4.8);

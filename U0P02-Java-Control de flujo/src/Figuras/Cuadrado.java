@@ -2,7 +2,7 @@ package Figuras;
 
 import java.util.Scanner;
 
-public class Cuadrado {
+public class Cuadrado extends Figura{
 	Scanner s=new Scanner(System.in);
 	private double lado;
 	

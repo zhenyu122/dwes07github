@@ -2,10 +2,10 @@ package Figuras;
 
 import java.util.Scanner;
 
-public class Circunferencia {
-
-	private double radio;
+public class Circunferencia extends Figura{
 	Scanner s=new Scanner(System.in);
+	private double radio;
+	private String titulo;
 	
 	public Circunferencia(double radio) {
 		this.radio=radio;

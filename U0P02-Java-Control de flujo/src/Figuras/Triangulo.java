@@ -2,7 +2,7 @@ package Figuras;
 
 import java.util.Scanner;
 
-public class Triangulo {
+public class Triangulo extends Figura{
 
 	Scanner s=new Scanner(System.in);
 	private double base;
