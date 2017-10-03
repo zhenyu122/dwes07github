@@ -14,6 +14,7 @@ public class Problema {
 		double area=t.area()+cua.area()+(c1.area()/2+((c2.area()/4)*3));
 		System.out.println();
 		System.out.println("El area de la figura es "+area);
+		System.out.println();
 		double perimetro=((c2.perimetro()/4)*3)+(c1.perimetro()/2)+(cua.perimetro()-cua.getLado())+(t.perimetro()-cua.getLado()-(c1.getRadio()*2)-(c2.getRadio()*2));
 		System.out.println("El perimetro de la figura es "+perimetro);
 	}
