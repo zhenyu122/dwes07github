@@ -1,6 +1,6 @@
 package Figuras;
 
-public abstract class Figura {
+public abstract class Figura implements Comparable<Figura> {
 
 	private String titulo;
 	private Color color;
@@ -8,6 +8,14 @@ public abstract class Figura {
 	public Figura(String titulo,Color c) {
 		this.titulo=titulo;
 		color=c;
+	}
+	
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public Color getColor() {
+		return color;
 	}
 
 	@Override
@@ -22,5 +30,7 @@ public abstract class Figura {
 	public double perimetro() {
 		return 0;
 	}
-	
+	public int compareTo(Figura o) {
+		return this.getTitulo().compareTo(o.getTitulo());
+	}
 }
