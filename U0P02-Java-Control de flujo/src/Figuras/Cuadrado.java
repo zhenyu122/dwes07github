@@ -6,7 +6,8 @@ public class Cuadrado extends Figura{
 	Scanner s=new Scanner(System.in);
 	private double lado;
 	
-	public Cuadrado(double lado) {
+	public Cuadrado(String titulo,Color color,double lado) {
+		super(titulo,color);
 		this.lado=lado;
 	}
 	
@@ -28,7 +29,7 @@ public class Cuadrado extends Figura{
 
 	@Override
 	public String toString() {
-		return "Cuadrado [lado=" + lado + ", area()=" + area() + ", perimetro()=" + perimetro() + "]";
+		return "Cuadrado ["+super.toString()+" lado=" + lado + ", area()=" + area() + ", perimetro()=" + perimetro() + "]";
 	}
 
 

@@ -8,7 +8,8 @@ public class Triangulo extends Figura{
 	private double base;
 	private double altura;
 	
-	public Triangulo(int base,int altura) {
+	public Triangulo(String titulo,Color color,int base,int altura) {
+		super(titulo, color);
 		this.base=base;
 		this.altura=altura;
 	}
@@ -39,7 +40,7 @@ public class Triangulo extends Figura{
 
 	@Override
 	public String toString() {
-		return "Triangulo [base=" + base + ", altura=" + altura + ", area()=" + area() + ", perimetro()=" + perimetro()
+		return "Triangulo ["+super.toString()+" base=" + base + ", altura=" + altura + ", area()=" + area() + ", perimetro()=" + perimetro()
 				+ "]";
 	}
 

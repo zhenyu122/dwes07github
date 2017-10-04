@@ -3,10 +3,10 @@ package Figuras;
 public class Problema{
 
 	public static void main(String[] args) {
-		Circunferencia c1=new Circunferencia(4.8);
-		Circunferencia c2=new Circunferencia(1.5);
-		Cuadrado cua=new Cuadrado(4.2);
-		Triangulo t=new Triangulo(8, 15);
+		Circunferencia c1=new Circunferencia("c1", Color.Azul, 4.8);
+		Circunferencia c2=new Circunferencia("c2", Color.Naranja, 1.5);
+		Cuadrado cua=new Cuadrado("cuadrado", Color.Rojo,4.2);
+		Triangulo t=new Triangulo("tringulo", Color.Negro,8, 15);
 		System.out.println(c1.toString());
 		System.out.println(c2.toString());
 		System.out.println(cua.toString());

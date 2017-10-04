@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class Circunferencia extends Figura{
 	Scanner s=new Scanner(System.in);
 	private double radio;
-	private String titulo;
 	
-	public Circunferencia(double radio) {
+	public Circunferencia(String titulo,Color color,double radio) {
+		super(titulo, color);
 		this.radio=radio;
 	}
 
@@ -29,8 +29,10 @@ public class Circunferencia extends Figura{
 
 	@Override
 	public String toString() {
-		return "Circunferencia [radio=" + radio + ", area()=" + area() + ", perimetro()=" + perimetro() + "]";
+		return "Circunferencia ["+super.toString()+" radio=" + radio + ", area()=" + area() + ", perimetro()=" + perimetro() + "]";
 	}
+
+	
 
 	
 	
