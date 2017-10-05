@@ -5,12 +5,18 @@ import java.util.Collections;
 
 public class GestorFiguras {
 	private ArrayList<Figura>ar;
-	
+	/**
+	 * Constructor de la clase GestorFiguras
+	 * @param ar Inicializamos el array 
+	 * **/
 	public GestorFiguras() {
 		ar=new ArrayList<>();
 	}
-	
-	public void a�adirFigura(Figura f) {
+	/**
+	 * Método para añadir una figura al array
+	 * @param f Define el objeto que le pasamos al metodo para añadir al array
+	 * **/
+	public void añadirFigura(Figura f) {
 		boolean enc=false;
 		for (int i=0;i<ar.size() && !enc;i++) {
 			if(ar.get(i).getTitulo().equalsIgnoreCase(f.getTitulo())) {
@@ -20,10 +26,13 @@ public class GestorFiguras {
 		}
 		if (!enc) {
 			ar.add(f);
-			System.out.println("Figura a�adida");
+			System.out.println("Figura añadida");
 		}
 	}
-	
+	/**
+	 * Método para eliminar una figura del array
+	 * @param titulo Define el titulo por el que se buscará la figura para eliminar
+	 * **/
 	public void eliminarFigura(String titulo) {
 		boolean enc=false;
 		for (int i=0;i<ar.size() && !enc;i++) {
@@ -36,14 +45,19 @@ public class GestorFiguras {
 		if (!enc)
 			System.out.println("No hay una figura con ese titulo");
 	}
-	
+	/**
+	 * Método para mostar los datos de todas las figuras del array
+	 * **/
 	public void mostrarFiguras() {
 		Collections.sort(ar);
 		for (int i=0;i<ar.size();i++) {
 			System.out.println(ar.get(i).toString());
 		}
 	}
-	
+	/**
+	 * Método para calcular la suma del area de todas las figuras del array
+	 * @return La suma de las areas de todas las figuras
+	 * **/
 	public double calcularSumatorioAreas() {
 		double suma=0;
 		for (int i=0;i<ar.size();i++) {
