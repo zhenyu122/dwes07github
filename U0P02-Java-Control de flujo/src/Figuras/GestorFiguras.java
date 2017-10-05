@@ -42,7 +42,7 @@ public class GestorFiguras {
 				System.out.println("Figura Borrada");
 			}
 		}
-		if (!enc)
+		if (!enc) 
 			System.out.println("No hay una figura con ese titulo");
 	}
 	/**
