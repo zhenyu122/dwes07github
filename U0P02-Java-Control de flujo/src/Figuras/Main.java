@@ -20,10 +20,10 @@ public class Main {
 		System.out.println();
 		GestorFiguras g=new GestorFiguras();
 		Cuadrado cua2=new Cuadrado("cuadrado", Color.Verde, 5);
-		System.out.println("Añadimos las figuras y comprobamos que no añade si el titulo existe");
-		g.añadirFigura(t);g.añadirFigura(cua);
-		g.añadirFigura(c2);g.añadirFigura(c1);
-		g.añadirFigura(cua2);
+		System.out.println("Aï¿½adimos las figuras y comprobamos que no aï¿½ade si el titulo existe");
+		g.aÃ±adirFigura(t);g.aÃ±adirFigura(cua);
+		g.aÃ±adirFigura(c2);g.aÃ±adirFigura(c1);
+		g.aÃ±adirFigura(cua2);
 		System.out.println();
 		System.out.println("Mostramos las figuras");
 		g.mostrarFiguras();
