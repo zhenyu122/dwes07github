@@ -13,19 +13,14 @@ if (!isset($_POST["enviar"])){
 Cadena<input type="text" name="cadena">
 Bisiesto :
 Si <input type="radio" name="bisiesto">
-No <input type="radio" name="bisiesto">
+No <input type="radio" name="bisies">
 <input type="submit" name="enviar">
 </form>
 <?php 
 }else{
    $a=$_POST["cadena"];
-   $s=$a;
-   for($x=strlen($a);$x>0;$x--){
-       for ($i=0;$i<$x;$i++){
-           echo $s[$i];
-       }
-       echo "<br>";
-   }
+   $b=$_POST["bisiesto"];
+   echo $b;
 }
 ?>
 <br>
