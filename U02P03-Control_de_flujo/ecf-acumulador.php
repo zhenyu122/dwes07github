@@ -27,7 +27,10 @@ if(!isset($_POST["enviar"])){
     <input type="submit" name="enviar">
     </form>
     <?php
-    echo "<p>La suma total es: ".$acu."</p><br>";
+    if ($acu>50)
+        echo "<p>Has pasado de los 50</p>";
+    else
+        echo "<p>La suma total es: ".$acu."</p><br>";
 }else{
     echo "<p>Has pasado de los 50</p>";
 }
