@@ -12,7 +12,7 @@ if (!isset($_POST["enviar"])){
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"],ENT_QUOTES,"UTF-8")?>" method="post">
 Numero A<input type="text" name="a">
 Numero B<input type="text" name="b">
-<input type="submit" name="enviar">
+<input type="submit" name=enviar>
 </form>
 <?php 
 }else{
@@ -46,6 +46,6 @@ Numero B<input type="text" name="b">
 }
 ?>
 <br>
-<a href="index.php">Volver</a>
+<a href="index.php"><input type="button" value="Volver"></a>
 </body>
 </html>

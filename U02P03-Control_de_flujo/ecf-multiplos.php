@@ -28,6 +28,6 @@ while($x<=20){
 }
 ?>
 <br>
-<a href="index.php">Volver</a>
+<a href="index.php"><input type="button" value="Volver"></a>
 </body>
 </html>

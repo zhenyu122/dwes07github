@@ -26,6 +26,6 @@ Numero b<input type="text" name="numb">
 }
 ?>
 <br>
-<a href="index.php">Volver</a>
+<a href="index.php"><input type="button" value="Volver"></a>
 </body>
 </html>

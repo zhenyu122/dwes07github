@@ -48,6 +48,6 @@ No <input type="radio" name="bisiesto" value="no" checked>
 }
 ?>
 <br>
-<a href="index.php">Volver</a>
+<a href="index.php"><input type="button" value="Volver"></a>
 </body>
 </html>

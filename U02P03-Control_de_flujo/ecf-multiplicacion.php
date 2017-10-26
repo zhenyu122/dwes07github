@@ -22,6 +22,6 @@ Numero A<input type="text" name="numa">
 }
 ?>
 <br>
-<a href="index.php">Volver</a>
+<a href="index.php"><input type="button" value="Volver"></a>
 </body>
 </html>
