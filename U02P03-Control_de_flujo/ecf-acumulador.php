@@ -7,7 +7,6 @@
 <body>
 <h1>Acumulador</h1>
 <?php
-$acu=0;
 if(!isset($_POST["enviar"])){
       
         ?>
