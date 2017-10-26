@@ -8,21 +8,30 @@
 <h1>Acumulador</h1>
 <?php
 $acu=0;
-while($acu<=50){
-    if (!isset($_POST["enviar"])){   
+if(!isset($_POST["enviar"])){
+      
         ?>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"],ENT_QUOTES,"UTF-8")?>" method="post">
     Numero<input type="text" name="num">
-    <input type="hidden" name="acu">
+    <?php $acu=0?>
+    <input type="hidden" name="acum" value="<?php echo $acu?>">
     <input type="submit" name="enviar">
     </form>
     <?php 
-    }else{
-       $a=$_POST["num"];
-       $acu+=$_POST["num"];
-       echo $acu;
-    }
+}else if($_POST["acum"]<50){
+    ?>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"],ENT_QUOTES,"UTF-8")?>" method="post">
+    Numero<input type="text" name="num">
+    <?php $acu=$_POST["num"]+$_POST["acum"];?>
+    <input type="hidden" name="acum" value="<?php echo $acu?>">
+    <input type="submit" name="enviar">
+    </form>
+    <?php
+    echo "<p>La suma total es: ".$acu."</p><br>";
+}else{
+    echo "<p>Has pasado de los 50</p>";
 }
+
 ?>
 <br>
 <a href="index.php">Volver</a>

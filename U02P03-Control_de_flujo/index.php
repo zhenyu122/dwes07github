@@ -14,7 +14,7 @@
 <a href="ecf-meses.php">Meses</a><br>
 <a href="ecf-acumulador.php">Acumulador</a><br>
 <a href="ecf-multiplos.php">Multiplo</a><br>
-<a href="ecf-cuadrado.php">cuadrado</a><br>
+<a href="ecf-cuadrado.php">Cuadrado</a><br>
 <?php 
 
 ?>

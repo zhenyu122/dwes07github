@@ -9,21 +9,36 @@
 <?php
 if (!isset($_POST["enviar"])){   
     ?>
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"],ENT_QUOTES,"UTF-8")?>" method="post">
+<form action="/U02P03-Control_de_flujo/ecf-cuadrado.php" method="post">
 Numero<input type="text" name="num">
 <input type="submit" name="enviar">
 </form>
-<table>
     <?php 
     }else{
+        $x=$_POST["num"];
+        $num=1;
         ?>
-        
-        	
-        
-    <?php
+    <table border="1">
+         <?php
+         for($i=1;$i<=$x;$i++){
+             
+          echo "<tr>";
+          for($j=1;$j<=$x;$j++){
+           if($i%2==0){
+               echo "<td style='padding:3px;
+                        background-color:lightblue;'>".$num."</td>";
+            $num++;
+           }else{
+               echo "<td style='padding:3px;'>".$num."</td>";
+            $num++;
+            }
+           }
+           echo "</tr>";
+           
+          }
     }
         ?>
-</table>
+	</table>
 <br>
 <a href="index.php">Volver</a>
 </body>
