@@ -5,21 +5,22 @@
 <title></title>
 </head>
 <body>
-<h1>Diferencia</h1>
 <?php 
-if (!isset($_POST["enviar"])){
+include 'triangulo.php';
 ?>
+
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"],ENT_QUOTES,"UTF-8")?>" method="post">
-Numero A<input type="text" name="a">
-Numero B<input type="text" name="b">
+Base<input type="text" name="base">
+Altura<input type="text" name="altura">
 <input type="submit" name=enviar>
 </form>
 <?php 
-}else{
-    
+if (isset($_POST["enviar"])){
+    $t1=new Triangulo($_POST["altura"], $_POST["base"]);
+    echo "<p>".$t1->__toString()."</p>";
+    echo "<p>Su área es ".$t1->calcularArea()."</p>";
 }
 ?>
 <br>
-<a href="index.php"><input type="button" value="Volver"></a>
 </body>
 </html>
