@@ -1,5 +1,5 @@
 <?php
-class Triangulo{
+class Triangulo extends Figuras{
     public $base;
     private $altura;
     
