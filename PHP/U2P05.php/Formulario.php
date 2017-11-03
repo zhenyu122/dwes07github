@@ -80,7 +80,7 @@ $Obnom=false;$Obpass=false;$Obemail=false;$Obfecha=false;
     <label>Nombre</label><input type="text" name="nombre" value="<?php echo $nombre?>" required="required">
     <?php 
     if (isset($_POST["enviar"])){
-        if(!is_numeric($_POST["nombre"])){
+        if(validar_nombre($_POST["nombre"])){
             $Obnom=true;
             $validado[]="Nombre: ".$_POST["nombre"];
         }else
@@ -137,7 +137,7 @@ $Obnom=false;$Obpass=false;$Obemail=false;$Obfecha=false;
           if (!empty($_POST["direccion"])){
               $validado[]="Dirección: ".$_POST["direccion"];
           }else
-              echo "<a>* Direccion Vacia</a>";
+              echo "<a>* Introduce una direccion</a>";
       }
      ?><br>
     <label>Teléfono</label><input type="tel" name="tel" value="<?php echo $tel?>">
@@ -149,7 +149,7 @@ $Obnom=false;$Obpass=false;$Obemail=false;$Obfecha=false;
               }else
                   echo "<a>* Teléfono tiene que tener 9 cifras</a>";
           }else
-              echo "<a>*Teléfono no valido</a>";
+              echo "<a>* Introduce un teléfono</a>";
       }
      ?><br>
     <label>Ciclo</label>

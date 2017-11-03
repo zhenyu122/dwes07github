@@ -1,4 +1,10 @@
 <?php
+function validar_nombre($nombre){
+    if(!is_numeric($nombre)){
+        return true;
+    }else
+        return false;
+}
 function validar_clave($clave){
     if(strlen($clave) < 8){
         return false;
