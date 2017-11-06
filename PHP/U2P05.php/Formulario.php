@@ -180,24 +180,16 @@ $Obnom=false;$Obpass=false;$Obemail=false;$Obfecha=false;
    	<?php 
     }
        	if (isset($_POST["enviar"])){
-           	if (empty($Errores)){
            	    ?>
-                    <ul>
-                   	<ins><h3>Datos</h3></ins>
-                    <?php
-                    foreach ($validado as $valido){
-                        echo "<li>$valido</li>";   
-                    }
-                    ?>
-                    </ul>
-                <?php
-                }else{
-                ?>
-               
-                
-                <?php 
-                
+            <ul>
+           	<ins><h3>Datos</h3></ins>
+            <?php
+            foreach ($validado as $valido){
+                echo "<li>$valido</li>";   
             }
+            ?>
+            </ul>
+                <?php 
        	}
     
    	?>
