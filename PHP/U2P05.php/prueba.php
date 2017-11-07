@@ -89,7 +89,7 @@ $Obnom=false;$Obape=false;$Obpass=false;$Obemail=false;$Obfecha=false;$Obdir=fal
     <?php 
     if (isset($_POST["enviar"])){
         if(!empty($_POST["apellido"])){
-            if(!$Obape)
+            if(!validar_nom_ape($nombre))
                 echo "<a>* El apellido introducido no es una cadena</a>";
         }else
             echo "<a>* Introduce un apellido</a>";
@@ -106,7 +106,7 @@ $Obnom=false;$Obape=false;$Obpass=false;$Obemail=false;$Obfecha=false;$Obdir=fal
     <label>E-mail</label><input type="email" name="email" value="<?php echo $email?>" required="required">
     <?php 
     if (isset($_POST["enviar"])){
-        if(! filter_var($_POST["email"],FILTER_VALIDATE_EMAIL))
+        if(!validar_email($_POST["email"]))
             echo "<a>* E-mail no valido</a>";
     }
     ?><br>
@@ -179,7 +179,9 @@ $Obnom=false;$Obape=false;$Obpass=false;$Obemail=false;$Obfecha=false;$Obdir=fal
             ?>
             </ul>
                 <?php 
+                
        	}
+       	$Obemail=true;$Obfecha=true;$Obnom=true;$Obpass=true;
     
    	?>
 </body>
