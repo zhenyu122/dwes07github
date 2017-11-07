@@ -51,17 +51,22 @@ $Obnom=false;$Obape=false;$Obpass=false;$Obemail=false;$Obfecha=false;$Obdir=fal
         if (validar_fecha($_POST["fecha"])){
             $Obfecha=true;
             $fecha=$_POST["fecha"];
+            $validado[]="Fecha: ".$_POST["fecha"];
         }
             
         /*Dirección*/
         if (validar_dir($_POST["direccion"])){
+            $Obdir=true;
             $dir=$_POST["direccion"];
+            $validado[]="Dirección: ".$_POST["direccion"];
         }
         /*Teléfono*/
         if(!empty($_POST["tel"])){
             if (is_numeric($_POST["tel"])){
                 if (validar_tel($_POST["tel"])){
+                    $Obtel=true;
                     $tel=$_POST["tel"];
+                    $validado[]="Teléfono: ".$_POST["tel"];
                 }
             }
         }
@@ -89,7 +94,7 @@ $Obnom=false;$Obape=false;$Obpass=false;$Obemail=false;$Obfecha=false;$Obdir=fal
     <?php 
     if (isset($_POST["enviar"])){
         if(!empty($_POST["apellido"])){
-            if(!validar_nom_ape($nombre))
+            if(!$Obape)
                 echo "<a>* El apellido introducido no es una cadena</a>";
         }else
             echo "<a>* Introduce un apellido</a>";
@@ -99,33 +104,28 @@ $Obnom=false;$Obape=false;$Obpass=false;$Obemail=false;$Obfecha=false;$Obdir=fal
     <label>Password</label><input type="password" name="pass" value="<?php echo $pass?>" required="required">
     <?php 
     if (isset($_POST["enviar"])){
-        if (!validar_clave($_POST["pass"]))
+        if (!$Obpass)
            echo "<a>* La contraseña no cumple los requisitos</a>";
     }
     ?><br>
     <label>E-mail</label><input type="email" name="email" value="<?php echo $email?>" required="required">
     <?php 
     if (isset($_POST["enviar"])){
-        if(!validar_email($_POST["email"]))
+        if(!$Obemail)
             echo "<a>* E-mail no valido</a>";
     }
     ?><br>
     <label>Fecha nacimiento</label><input type="date" name="fecha" value="<?php echo $fecha?>" required="required">
     <?php 
     if (isset($_POST["enviar"])){
-        if (validar_fecha($_POST["fecha"])){
-            $Obfecha=true;
-            $validado[]="Fecha: ".$_POST["fecha"];
-        }else
+        if (!$Obfecha)
             echo "<a>* Fecha no valida</a>";
     }
     ?><br>
     <label>Dirección</label><input type="text" name="direccion" value="<?php echo $dir?>">
     <?php 
       if (isset($_POST["enviar"])){
-          if (!empty($_POST["direccion"])){
-              $validado[]="Dirección: ".$_POST["direccion"];
-          }else
+          if (!$Obdir)
               echo "<a>* Introduce una direccion</a>";
       }
      ?><br>
@@ -133,9 +133,7 @@ $Obnom=false;$Obape=false;$Obpass=false;$Obemail=false;$Obfecha=false;$Obdir=fal
     <?php 
       if (isset($_POST["enviar"])){
           if (is_numeric($_POST["tel"])){
-              if (validar_tel($_POST["tel"])){
-                  $validado[]="Teléfono: ".$_POST["tel"];
-              }else
+              if (!$Obtel)
                   echo "<a>* Teléfono tiene que tener 9 cifras</a>";
           }else
               echo "<a>* Introduce un teléfono</a>";
