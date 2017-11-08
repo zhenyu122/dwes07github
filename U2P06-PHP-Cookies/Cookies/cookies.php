@@ -1,3 +1,7 @@
+<?php
+setcookie("test", "test", time() + 3600, '/');
+if(count($_COOKIE) ==0) echo "<h3>Advertencia: tu navegador tiene las cookies deshabilitadas. Esta aplicación no funcionará</h3>";
+?>
 <html>
 <head>
 <title>Cookies</title>
@@ -6,7 +10,7 @@
 <body>
 <?php
 if(isset($_POST["enviar"])) {
-	setcookie("visitante", $_POST["nombre"], time() + 60, "/U2P06-PHP-Cookies"); // 86400 = segundos en 1 día
+	setcookie("visitante", $_POST["nombre"], time() + 60, "/U2P06-PHP-Cookies/Cookies"); // 86400 = segundos en 1 día
 	header("Location: ".$_SERVER['PHP_SELF']);
 	$eliminarCookie=false;
 }
