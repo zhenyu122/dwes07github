@@ -8,10 +8,10 @@ function validar_nom_ape($nombre){
     }
 }
 function validar_email($email){
-        if(filter_var($email,FILTER_VALIDATE_EMAIL)){
-            return true;
-        }else 
-            return false;
+    if(filter_var($email,FILTER_VALIDATE_EMAIL)){
+        return true;
+    }else 
+        return false;
 }
 function validar_dir($dir){
     if(!empty($dir)){
