@@ -18,13 +18,13 @@ a{color:red;}
     <fieldset>
     <legend>Introduce los datos</legend>
     <form action="Procesamiento.php" method="post">
-    <label>Nombre</label><input type="text" name="nombre" value="<?php echo $nombre?>" required="required"><br>
-    <label>Apellido</label><input type="text" name="apellido" value=""><br>
-    <label>Password</label><input type="password" name="pass" value="" required="required"><br>
-    <label>E-mail</label><input type="email" name="email" value="" required="required"><br>
-    <label>Fecha nacimiento</label><input type="date" name="fecha" value="" required="required"><br>
-    <label>Dirección</label><input type="text" name="direccion" value=""><br>
-    <label>Teléfono</label><input type="tel" name="tel" value=""><br>
+    <label>Nombre</label><input type="text" name="nombre" value="<?php if (isset($_POST["eviar"]))echo $nombre?>" required="required"><br>
+    <label>Apellido</label><input type="text" name="apellido" value="<?php if (isset($_POST["eviar"]))echo $ape?>"><br>
+    <label>Password</label><input type="password" name="pass" value="<?php if (isset($_POST["eviar"]))echo $pass?>" required="required"><br>
+    <label>E-mail</label><input type="email" name="email" value="<?php if (isset($_POST["eviar"]))echo $email?>" required="required"><br>
+    <label>Fecha nacimiento</label><input type="date" name="fecha" value="<?php if (isset($_POST["eviar"]))echo $fecha?>" required="required"><br>
+    <label>Dirección</label><input type="text" name="direccion" value="<?php if (isset($_POST["eviar"]))echo $dir?>"><br>
+    <label>Teléfono</label><input type="tel" name="tel" value="<?php if (isset($_POST["eviar"]))echo $tel?>"><br>
     <label>Ciclo</label>
     <select name="ciclo">
     	<option value="DAW">DAW</option>
