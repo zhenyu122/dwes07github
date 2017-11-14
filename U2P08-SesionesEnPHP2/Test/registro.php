@@ -1,9 +1,14 @@
 <?php
-if (!session_status () == PHP_SESSION_NONE){
-    header("Location: index.php");  
-}else if(isset($_POST['enviar'])){
+if (session_status () != PHP_SESSION_NONE){
+    header("location: prueba.php");  
+}else{
+
+if(isset($_POST['enviar'])){
+    session_name("PruebaSesion");
    session_start();
-   $nom=$_POST['nombre'];
+   $_SESSION["prueba"]="Contenido";
+   $_SESSION["x"]="HOLA";//_POST['nombre'];
+   header("location: prueba.php");
 }else{
     ?>
 <html>
@@ -15,6 +20,7 @@ Nombre<input type="text" name="nombre">
 </form>
 </body>
 </html>
-    <?php 
+    <?php
+}
 }
 ?>

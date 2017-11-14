@@ -15,13 +15,17 @@ if (session_status () == PHP_SESSION_NONE){
     <legend>Pregunta 2</legend>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"],ENT_QUOTES,"UTF-8")?>" method="post">
     <p>¿2?</p>
-    <input type="text" name="valor">
+    <select name="p2">
+    	<option>1</option>
+    	<option>2</option>
+    	<option>3</option>
+    </select>
     <input type="submit" name="enviar">
     </form>
     </fieldset>
     <?php 
     }else{
-        $_SESSION["respuesta2"]=$_POST["valor"];
+        $_SESSION["respuesta2"]=$_POST["p2"];
         header("Location: test3.php");
     }
     ?>
