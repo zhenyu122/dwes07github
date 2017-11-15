@@ -31,9 +31,9 @@ if (!isset($_SESSION["x"])){
     <p><a href="<?php echo $_SERVER['PHP_SELF']."?respuesta=true"?>">Ver respuestas</a></p>
     <?php 
     if (isset($_REQUEST["respuesta"])){
-        echo "<p>1. ".$_SESSION["respuesta1"]."</p>
-              <p> 2. ".$_SESSION["respuesta2"]."</p>
-              <p> 3 ".$_SESSION["respuesta3"]."</p>";
+        echo "<p>1. Martini con vodka</p>
+              <p>2. Anthrax</p>
+              <p>3. Herman Melville</p>";
     }
     if (isset($_REQUEST["denuevo"])){
         $_SESSION=array();
