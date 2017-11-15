@@ -1,5 +1,6 @@
 <?php
-if (session_status () == PHP_SESSION_NONE){
+session_start();
+if (!isset($_SESSION["x"])){
     header("Location: registro.php");
 }else if (!isset($_SESSION["respuesta1"])){
     header("Location: test1.php");
@@ -21,8 +22,25 @@ if (session_status () == PHP_SESSION_NONE){
    	if($_SESSION["respuesta3"]==3)
    	    $cont++;
    	
-   	 echo "Has acertado ".$cont." preguntas";
+   	 echo $_SESSION["x"]." has acertado ".$cont." preguntas";
    	
+    ?>
+    <p><a href="<?php echo $_SERVER['PHP_SELF']."?denuevo=true"?>">Empezar de nuevo</a></p>
+    <?php 
+   
+    if (isset($_REQUEST["denuevo"])){
+        $_SESSION=array();
+        session_unset();
+        
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+            );
+        
+        session_destroy();
+        header("location: registro.php");
+    }
     ?>
     
     </body>

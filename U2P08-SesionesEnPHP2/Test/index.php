@@ -1,17 +1,16 @@
 <?php
+session_start();
 if (!isset($_SESSION["x"])){
-    header("location: registro2.php");
+    header("location: registro.php");
 }else{
     $nombre=$_SESSION["x"];
-    $saludo = "Bienvenido $nombre";
+    $saludo = "<h2>Bienvenido $nombre</h2>";
     ?>
 <html>
 <head></head>
 <body>
-<p>
-<a href="<?php echo $_SERVER['test1.php']?>">Test</a>
 <?php echo $saludo ?>
-</p>
+<a href="<?php echo 'test1.php'?>">Test</a>
 </body>
 </html>
     <?php 

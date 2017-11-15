@@ -1,5 +1,6 @@
 <?php
-if (session_status () == PHP_SESSION_NONE){
+session_start();
+if (!isset($_SESSION["x"])){
     header("Location: registro.php");
 }else if (!isset($_SESSION["respuesta1"])){
     header("Location: test1.php");
@@ -27,8 +28,8 @@ if (session_status () == PHP_SESSION_NONE){
     </fieldset>
     <?php 
     }else{
-        $_SESSION["respuesta3"]=$_POST["3"];
-        header("Location: respuesta.php");
+        $_SESSION["respuesta3"]=$_POST["p3"];
+        header("Location: resultado.php");
     }
     ?>
     </body>

@@ -1,5 +1,6 @@
 <?php
-if (session_status () == PHP_SESSION_NONE){
+session_start();
+if (!isset($_SESSION["x"])){
     header("Location: registro.php");
 }else if (!isset($_SESSION["respuesta1"])){
     header("Location: test1.php");

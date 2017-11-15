@@ -1,14 +1,13 @@
 <?php
 if (session_status () != PHP_SESSION_NONE){
-    header("location: prueba.php");  
+    header("location: index.php");  
 }else{
 
 if(isset($_POST['enviar'])){
-    session_name("PruebaSesion");
    session_start();
    $_SESSION["prueba"]="Contenido";
-   $_SESSION["x"]="HOLA";//_POST['nombre'];
-   header("location: prueba.php");
+   $_SESSION["x"]=$_POST['nombre'];
+   header("location: index.php");
 }else{
     ?>
 <html>
