@@ -13,11 +13,11 @@ if (!isset($_SESSION["x"])){
     <fieldset>
     <legend>Pregunta 1</legend>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"],ENT_QUOTES,"UTF-8")?>" method="post">
-    <p>¿1?</p>
+    <h2>¿Cuál es la bebida favorita de James Bond?</h2>
     <select name="p1">
-    	<option>1</option>
-    	<option>2</option>
-    	<option>3</option>
+    	<option>Whisky de malta</option>
+    	<option>Martini con vodka</option>
+    	<option>Bloody mary</option>
     </select>
     <input type="submit" name="enviar">
     </form>

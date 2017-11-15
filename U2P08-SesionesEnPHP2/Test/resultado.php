@@ -15,19 +15,24 @@ if (!isset($_SESSION["x"])){
     <body>
    	<?php 
    	$cont=0;
-   	if ($_SESSION["respuesta1"]==1)
+   	?>
+   	<?php 
+   	if ($_SESSION["respuesta1"] == "Martini con vodka")
    	    $cont++;
-   	if($_SESSION["respuesta2"]==2)
+   	if($_SESSION["respuesta2"] == "Anthrax")
    	    $cont++;
-   	if($_SESSION["respuesta3"]==3)
+   	if($_SESSION["respuesta3"] == "Herman Melville")
    	    $cont++;
    	
    	 echo $_SESSION["x"]." has acertado ".$cont." preguntas";
    	
     ?>
     <p><a href="<?php echo $_SERVER['PHP_SELF']."?denuevo=true"?>">Empezar de nuevo</a></p>
+    <p><a href="<?php echo $_SERVER['PHP_SELF']."?respuesta=true"?>">Ver respuestas</a></p>
     <?php 
-   
+    if (isset($_REQUEST["respuesta"])){
+        echo "<p>1. ".$_SESSION["respuesta1"]."</p><p> 2. ".$_SESSION["respuesta2"]."</p><p> 3 ".$_SESSION["respuesta3"]."</p>";
+    }
     if (isset($_REQUEST["denuevo"])){
         $_SESSION=array();
         session_unset();

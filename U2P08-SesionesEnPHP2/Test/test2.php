@@ -15,11 +15,11 @@ if (!isset($_SESSION["x"])){
     <fieldset>
     <legend>Pregunta 2</legend>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"],ENT_QUOTES,"UTF-8")?>" method="post">
-    <p>¿2?</p>
+    <h2>¿Cual de los siguientes grupos se originó en Nueva York?</h2>
     <select name="p2">
-    	<option>1</option>
-    	<option>2</option>
-    	<option>3</option>
+    	<option>Iron Maiden</option>
+    	<option>Anthrax</option>
+    	<option>Megadeth</option>
     </select>
     <input type="submit" name="enviar">
     </form>

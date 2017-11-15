@@ -17,11 +17,11 @@ if (!isset($_SESSION["x"])){
     <fieldset>
     <legend>Pregunta 3</legend>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"],ENT_QUOTES,"UTF-8")?>" method="post">
-    <p>¿3?</p>
+    <p>¿Quién es el autor de "Moby Dick"?</p>
     <select name="p3">
-    	<option>1</option>
-    	<option>2</option>
-    	<option>3</option>
+    	<option>Walt Whitman</option>
+    	<option>Charles Dickens</option>
+    	<option>Herman Melville</option>
     </select>
     <input type="submit" name="enviar">
     </form>
