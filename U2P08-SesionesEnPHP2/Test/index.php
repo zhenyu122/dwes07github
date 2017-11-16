@@ -10,7 +10,7 @@ if (!isset($_SESSION["x"])){
 <head></head>
 <body>
 <?php echo $saludo ?>
-<a href="<?php echo 'test1.php'?>">Test</a>
+<a href="<?php echo 'test1.php'?>">Empezar test</a>
 </body>
 </html>
     <?php 
