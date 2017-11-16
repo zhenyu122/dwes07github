@@ -1,4 +1,5 @@
 <?php
+session_name("Test");
 session_start();
 if (!isset($_SESSION["x"])){
     header("location: registro.php");
