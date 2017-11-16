@@ -26,9 +26,11 @@ if(session_status() == PHP_SESSION_NONE)
             $_SESSION ['contador'] += 1;
             else
                 $_SESSION ['contador'] = 1;
-                if(isset($_POST["enviar"]))
-                    $_SESSION ['contador']+=$_POST["valor"];
-                $mensaje = "Has visitado esta página " . $_SESSION ['contador'] . " veces en esta sesión.";
+            
+            if(isset($_POST["enviar"]))
+                $_SESSION ['contador']+=$_POST["valor"];
+            
+            $mensaje = "Has visitado esta página " . $_SESSION ['contador'] . " veces en esta sesión.";
 }
 ?>
 <html>
@@ -42,7 +44,7 @@ if(session_status() == PHP_SESSION_NONE)
 if (!isset($_POST["enviar"])){
 ?>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"],ENT_QUOTES,"UTF-8")?>" method="post">
-Vsitas<input type="text" name="valor">
+Visitas<input type="text" name="valor">
 <input type="submit" name="enviar">
 </form>
 <?php 
