@@ -1,13 +1,13 @@
 <html>
 <head>
-	<title>Conexión 2</title>
-	<meta charset="UTF-8"/>
+<title>Conexión 2</title>
+<meta charset="UTF-8"/>
 </head>
 <body>
 <?php
 $servidor = "localhost";
-$usuario = "alumno";
-$clave = "alumno";
+$usuario = "alumno_rw";
+$clave = "dwes";
 $conexion = new mysqli($servidor,$usuario,$clave,"animales");
 //si quisiéramos hacerlo en dos pasos:
 // $conexion = new mysqli($servidor,$usuario,$clave);
@@ -17,6 +17,9 @@ if ($conexion->connect_errno) {
     echo "<p>Error al establecer la conexión (" . $conexion->connect_errno . ") " . $conexion->connect_error . "</p>";
 }
 $conexion->query("SET NAMES 'UTF8'");
+
+$conexion ->query("UPDATE animal SET especie='jabali' WHERE nombre='Babe'");
+echo "<h3 style='color:red'>". $conexion->error ."</h3>";
 ?>
 <table style='border:0'>
 <tr style='background-color:lightblue'>
@@ -43,6 +46,8 @@ while($fila=$resultado->fetch_assoc()/*$fila!=null*/) {
 ?>
 </table>
 <?php 
+$conexion ->query ("DROP TABLE animal");
+echo "<h3 style='color:red'>". $conexion->error ."</h3>";
 echo "<h3>Desconectando...</h3>";
 mysqli_close($conexion);
 ?>

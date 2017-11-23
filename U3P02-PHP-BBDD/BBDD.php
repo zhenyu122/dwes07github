@@ -30,5 +30,12 @@ else {
 	mysqli_close($conexion);
 }
 ?>
+<a href="BBDD.php"><button>Conexion1</button></a>
+<a href="conexion2.php"><button>Conexion2</button></a>
+<a href="conexion3.php"><button>Conexion3</button></a>
+<a href="conexion4.php"><button>Conexion4</button></a>
+<a href="conexion5.php"><button>Conexion5</button></a>
+<a href="conexion6.php"><button>Conexion6</button></a>
+
 </body>
 </html>
