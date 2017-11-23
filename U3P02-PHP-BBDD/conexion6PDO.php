@@ -5,17 +5,18 @@
 </head>
 <body>
 <?php
-include 'Animal.php';
+include 'AnimalPDO.php';
 $servidor = "localhost";
 $usuario = "alumno";
 $clave = "alumno";
-$conexion = new mysqli($servidor,$usuario,$clave,"animales");
-//si quisiéramos hacerlo en dos pasos:
-// $conexion = new mysqli($servidor,$usuario,$clave);
-// $conexion->select_db("animales");
-
-if ($conexion->connect_errno) {
-    echo "<p>Error al establecer la conexión (" . $conexion->connect_errno . ") " . $conexion->connect_error . "</p>";
+try{
+    echo "<p>Conectando...</p>";
+    $conexion = new PDO("mysql:host=$servidor;dbname=animales",$usuario,$clave);
+    echo "<p>Conexión con éxito</p>";
+}catch (PDOException $pdo){
+    $conexion=null;
+    echo "<p>Error al establecer la conexión: ".$pdo. "</p>";
+    
 }
 $conexion->query("SET NAMES 'UTF8'");
 ?>
@@ -29,15 +30,18 @@ $conexion->query("SET NAMES 'UTF8'");
 <?php
 $resultado = $conexion -> query("SELECT nombre,especie as tipo ,chip,imagen FROM animal ORDER BY nombre");
 if($resultado->num_rows === 0) echo "<p>No hay animales en la base de datos</p>";
-while ($animal = $resultado->fetch_object('Animal')) {
-    // echo $animal."<br/>"; // primer intento más sencillo
-    echo "<tr bgcolor='lightgreen'>";
+
+$resultado->setFetchMone(PDO::FETCH_CLASS,'Animal');
+while ($animal=$resultado->fetch()) {
+  
+        echo $animal->datos()."\n";
+   /* echo "<tr bgcolor='lightgreen'>";
     echo "<td>".$animal->getChip()."</td>\n";
     echo "<td>".$animal->getNombre()."</td>\n";
     echo "<td>".$animal->getEspecie()."</td>\n";
     echo "<td><img src='img/".$animal->getImagen()."' width=100px height=100px></td>\n";
-    echo "</tr>";
-    //print_r($animal);
+    echo "</tr>";*/
+   // print_r($animal);
 }
 ?>
 </table>
