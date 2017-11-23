@@ -5,7 +5,7 @@
 </head>
 <body>
 <?php
-include 'AnimalPDO.php';
+include 'Animal.php';
 $servidor = "localhost";
 $usuario = "alumno";
 $clave = "alumno";
@@ -29,25 +29,22 @@ $conexion->query("SET NAMES 'UTF8'");
 </tr>
 <?php
 $resultado = $conexion -> query("SELECT nombre,especie as tipo ,chip,imagen FROM animal ORDER BY nombre");
-if($resultado->num_rows === 0) echo "<p>No hay animales en la base de datos</p>";
 
-$resultado->setFetchMone(PDO::FETCH_CLASS,'Animal');
+if($resultado->rowCount() === 0) echo "<p>No hay animales en la base de datos</p>";
+
+$resultado->setFetchMode(PDO::FETCH_CLASS,'Animal');
 while ($animal=$resultado->fetch()) {
-  
-        echo $animal->datos()."\n";
-   /* echo "<tr bgcolor='lightgreen'>";
+    echo "<tr bgcolor='lightgreen'>";
     echo "<td>".$animal->getChip()."</td>\n";
     echo "<td>".$animal->getNombre()."</td>\n";
     echo "<td>".$animal->getEspecie()."</td>\n";
     echo "<td><img src='img/".$animal->getImagen()."' width=100px height=100px></td>\n";
-    echo "</tr>";*/
-   // print_r($animal);
+    echo "</tr>";
 }
 ?>
 </table>
 <?php 
 echo "<h3>Desconectando...</h3>";
-mysqli_close($conexion);
 ?>
 <a href="BBDD.php"><button>Conexion1</button></a>
 <a href="conexion2.php"><button>Conexion2</button></a>
