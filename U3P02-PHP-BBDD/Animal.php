@@ -13,19 +13,19 @@ class Animal{
         return $this->chip;
     }
     
-    function getNombre(){
+    public function getNombre(){
         return $this->nombre;
     }
-    function getEspecie(){
+    public function getEspecie(){
         return $this->tipo;
     }
     
-    function getImagen(){
+    public function getImagen(){
         return $this->imagen;
     }
     
     public function __toString(){
-        print_r( "Chip: ".$this->chip."  Nombre: ".$this->nombre." Especie: ".$this->tipo." Imagen: ".$this->imagen);
+        return "Chip: ".$this->chip."  Nombre: ".$this->nombre." Especie: ".$this->tipo." Imagen: ".$this->imagen;
     }
 }
 ?>

@@ -37,6 +37,7 @@ while ($animal = $resultado->fetch_object('Animal')) {
     echo "<td>".$animal->getEspecie()."</td>\n";
     echo "<td><img src='img/".$animal->getImagen()."' width=100px height=100px></td>\n";
     echo "</tr>";
+    print_r($animal);
 }
 ?>
 </table>
