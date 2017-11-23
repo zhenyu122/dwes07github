@@ -10,9 +10,9 @@ $servidor = "localhost";
 $usuario = "alumno";
 $clave = "alumno";
 try{
-    echo "<p>Conectando...</p>";
+    echo "<h3>Conectando...</h3>";
     $conexion = new PDO("mysql:host=$servidor;dbname=animales",$usuario,$clave);
-    echo "<p>Conexión con éxito</p>";
+    echo "<h3>Conexión con éxito</h3>";
 }catch (PDOException $pdo){
     $conexion=null;
     echo "<p>Error al establecer la conexión: ".$pdo. "</p>";
@@ -45,6 +45,8 @@ while ($animal=$resultado->fetch()) {
 </table>
 <?php 
 echo "<h3>Desconectando...</h3>";
+$resultado->closeCursor();
+$conexion=null;
 ?>
 <a href="BBDD.php"><button>Conexion1</button></a>
 <a href="conexion2.php"><button>Conexion2</button></a>
