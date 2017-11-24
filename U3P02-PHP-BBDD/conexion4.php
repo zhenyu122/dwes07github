@@ -57,5 +57,6 @@ mysqli_close($conexion);
 <a href="conexion4.php"><button>Conexion4</button></a>
 <a href="conexion5.php"><button>Conexion5</button></a>
 <a href="conexion6.php"><button>Conexion6</button></a>
+<a href="conexion6PDO.php"><button>Conexion6PDO</button></a>
 </body>
 </html>
