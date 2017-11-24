@@ -13,8 +13,10 @@ $conexion = new mysqli($servidor,$usuario,$clave,"catalogo07");
 
 if ($conexion->connect_errno) {
     echo "<p>Error al establecer la conexión (" . $conexion->connect_errno . ") " . $conexion->connect_error . "</p>";
-}
+}else
+    echo "<h3>Conectado</h3>";
 $conexion->query("SET NAMES 'UTF8'");
+
 ?>
 <table style='border:0'>
 <tr style='background-color:lightblue'>
@@ -22,7 +24,7 @@ $conexion->query("SET NAMES 'UTF8'");
 	<th>Compania</th>
 </tr>
 <?php
-$resultado = $conexion -> query("SELECT Titulo,Compania FROM obras");
+$resultado = $conexion -> query("SELECT Titulo,Compania FROM obras order by Titulo");
 if($resultado->num_rows === 0) echo "<p>No hay Datos</p>";
 while ($obra = $resultado->fetch_object('Obra')) {
     print_r($obra);
