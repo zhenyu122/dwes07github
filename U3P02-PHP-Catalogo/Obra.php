@@ -1,21 +1,24 @@
 <?php
 class Obra{
-    private $id,$titulo,$compania,$imagen;
+    private $ID,$Titulo,$Compania,$Imagen,$Nombre;
     
-    public function getID(){
-        return $this->id;
+    function getID(){
+        return $this->ID;
     }
-    public function getTitulo(){
-        return $this->titulo;
+    function getTitulo(){
+        return $this->Titulo;
     }
-    public function getCompania(){
-        return $this->compania;
+    function getCompania(){
+        return $this->Compania;
     }
-    public function getImagen(){
-        return $this->imagen;
+    function getNombre(){
+        return $this->Nombre;
     }
-    public function __toString(){
-        return "ID: ".$this->id."Titulo: ".$this->titulo." Compania: ".$this->compania." Imagen: ".$this->imagen;
+    function getImagen(){
+        return $this->Imagen;
+    }
+    function __toString(){
+        return "ID: ".$this->ID."Titulo: ".$this->Titulo." Compania: ".$this->Compania."Nombre Compania: ".$this->Nombre." Imagen: ".$this->Imagen;
     }
 }
 ?>
