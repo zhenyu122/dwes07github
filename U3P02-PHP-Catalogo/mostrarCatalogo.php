@@ -23,7 +23,9 @@ if ($conexion->connect_errno) {
 }else
     echo "<h3>Conectado</h3>";
 $conexion->query("SET NAMES 'UTF8'");
-
+if (isset($_POST["busqueda"])){
+    
+}else{
 
 if(isset($_REQUEST["idAutor"])){
     ?>
@@ -93,6 +95,7 @@ while ($obra = $resultado->fetch_object('Obra')) {
 ?>
 </table>
 <?php 
+}
 }
 ?>
 <br>
