@@ -8,6 +8,7 @@
 	   td a:hover{font-weight: bold}
 	   a:link,a:visited{color:blue}
 	   a:hover{color:red}
+	   fieldset{width:250px;height:50px;}
 	</style>
 </head>
 <body>
@@ -23,19 +24,70 @@ if ($conexion->connect_errno) {
 }else
     echo "<h3>Conectado</h3>";
 $conexion->query("SET NAMES 'UTF8'");
-if (isset($_POST["busqueda"])){
-    
-}else{
 
-if(isset($_REQUEST["idAutor"])){
+if (isset($_POST["enviar"])){
+    if (isset($_POST["busqueda"])){
+        $arBusca = explode(" ", $_POST["busqueda"]);
     ?>
-    <?php
-    //$resultado = $conexion -> query("SELECT * FROM obras order by Titulo");
+        <table style='border:0'>
+        <tr style='background-color:lightblue'>
+        <th>Titulo</th>
+        <th>Compania</th>
+        <th>Imagen</th>
+        </tr>
+        <?php
+        $resultado = $conexion -> query("SELECT obras.*,Nombre FROM obras,autor where Compania=autor.ID");
+        
+        if($resultado->num_rows === 0) echo "<p>No hay Datos</p>";
+        $sinresultados=true;
+        echo "<h3>Buscando \"".$_POST['busqueda']."\"</h3>";
+        while ($obra = $resultado->fetch_object('Obra')) {
+            $arObra=explode(" ", $obra->getTitulo());
+            $arAutor=explode(" ", $obra->getNombre());
+            $encontrado=false;
+            foreach ($arBusca as $x){
+                foreach ($arObra as $y){
+                    if (strtoupper($x)==strtoupper($y)){
+                        $encontrado=true;$sinresultados=false;
+                    }
+                }
+                foreach ($arAutor as $z){
+                    if (strtoupper($x)==strtoupper($z)){
+                        $encontrado=true;$sinresultados=false;
+                    }
+                }
+            }
+            if ($encontrado){
+                echo "<tr bgcolor='lightgreen'>";
+                echo "<td align=center>".$obra->getID()."</td>\n";
+                echo "<td align=center><a href='mostrarObra.php?idObra=".$obra->getID()."'>".$obra->getTitulo()."</a></td>\n";
+                echo "<td><img src='img/".$obra->getImagen()."' width=150px height=200px/></td>";
+                echo "</tr>";
+            }
+        }
+        if ($sinresultados)echo "<h3>No hay resultados de esta búsqueda</h3>";
+        ?>
+</table>
+<?php 
+    }
+}else{
+?>
+	<fieldset>
+    <legend>Búsqueda</legend>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"],ENT_QUOTES,"UTF-8")?>" method="post">
+    <input type="text" name="busqueda">
+    <input type="submit" name=enviar>
+    </form>
+    </fieldset>
+    <br>
+<?php 
+if(isset($_REQUEST["idAutor"])){
     $resultado = $conexion -> query("SELECT * FROM autor where ID=".$_REQUEST["idAutor"]);
        
-    if($resultado->num_rows === 0) die ("<p>No hay Datos</p>");
+    if($resultado->num_rows === 0) echo ("<p>No hay Datos</p>");
     echo "<ul>";
     while($fila=$resultado->fetch_assoc()) {
+        $ID=$fila["ID"];
         echo "<h3>Los Datos de ".$fila['Nombre'].":</h3>";
         echo "<li>ID: $fila[ID]</li>";
         echo "<li>Titulo: $fila[Nombre]</li>";
@@ -47,6 +99,28 @@ if(isset($_REQUEST["idAutor"])){
         }
     }
     echo "</ul>";
+    mysqli_free_result($resultado);
+    ?>
+    <table style='border:0'>
+    <tr style='background-color:lightblue'>
+    <th>Titulo</th>
+    <th>Compania</th>
+    <th>Imagen</th>
+    </tr>
+    <?php
+    $resultado = $conexion -> query("SELECT * FROM obras where Compania=$ID");
+       
+    if($resultado->num_rows === 0) echo "<p>No hay Datos</p>";
+    while ($obra = $resultado->fetch_object('Obra')) {
+        echo "<tr bgcolor='lightgreen'>";
+        echo "<td>".$obra->getID()."</td>\n";
+        echo "<td><a href='mostrarObra.php?idObra=".$obra->getID()."'>".$obra->getTitulo()."</a></td>\n";
+        echo "<td><img src='img/".$obra->getImagen()."' width=150px height=200px/></td>";
+        echo "</tr>";
+    }
+    ?>
+</table>
+<?php 
 }else{
 ?>
 
