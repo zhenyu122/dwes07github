@@ -37,7 +37,7 @@ if (isset($_POST["enviar"])){
         <p>Confirma la contraseña para borrar al usuario</p>
         <input type="password" name="pass"><br><br>
    		<input type="submit" name="enviar">
-   		<p><a href="index.php">Volver a Index</a></p>
+   		<p><a href="../mostrarCatalogo.php">Cancelar</a></p>
    		<?php if (!empty($mensajeError)){
    		   echo "<h3>".$mensajeError."</h3>";
         }?>

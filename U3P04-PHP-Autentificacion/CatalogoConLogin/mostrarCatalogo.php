@@ -1,3 +1,10 @@
+<?php
+session_start();
+$mensajeError="";
+if (!isset($_SESSION["user"])){
+    header("location: login/login.php");
+}else{
+    ?>
 <html>
 <head>
 	<title>Mostrar Catalogo</title>
@@ -13,6 +20,20 @@
 </head>
 <body>
 <?php
+$conexion1 = new mysqli("localhost","alumno","alumno","catalogo07");
+$resultado1 = $conexion1->query("select * from usuario");
+if($resultado1->num_rows === 0) header("Location:logout.php");
+$nombre="";
+while($fila=$resultado1->fetch_assoc()) {
+    if ($fila["login"]==$_SESSION["user"]){
+        $nombre=$_SESSION["user"];
+    }
+}
+if (empty($nombre)){
+    header("location: login/logout.php");
+    
+}else{
+    
 include 'Obra.php';
 $servidor = "localhost";
 $usuario = "alumno";
@@ -173,8 +194,13 @@ while ($obra = $resultado->fetch_object('Obra')) {
 ?>
 <br>
 <a href="<?php echo $_SERVER["PHP_SELF"]?>"><button>Limpiar Filtros</button></a>
+        <p><a href="login/logout.php">Cerrar sesión por logout.php</a></p>
+        <p><a href="login/login.php?cerrarSesion=true">Cerrar sesión por parámetro</a></p>
+        <p><a href="login/baja.php">Eliminar cuenta</a></p>
 <?php 
 mysqli_close($conexion);
+}
+}
 ?>
 </body>
 </html>

@@ -1,3 +1,10 @@
+<?php
+session_start();
+$mensajeError="";
+if (!isset($_SESSION["user"])){
+    header("location: login/login.php");
+}else{
+    ?>
 <html>
 <head>
 <title>Mostrar Obra</title>
@@ -5,6 +12,19 @@
 </head>
 <body>
 <?php
+$conexion1 = new mysqli("localhost","alumno","alumno","catalogo07");
+$resultado1 = $conexion1->query("select * from usuario");
+if($resultado1->num_rows === 0) header("Location:logout.php");
+$nombre="";
+while($fila=$resultado1->fetch_assoc()) {
+    if ($fila["login"]==$_SESSION["user"]){
+        $nombre=$_SESSION["user"];
+    }
+}
+if (empty($nombre)){
+    header("location: login/logout.php");
+    
+}else{
 $servidor = "localhost";
 $usuario = "alumno_rw";
 $clave = "dwes";
@@ -35,6 +55,8 @@ echo "</ul>";
 mysqli_free_result($resultado);
 
 mysqli_close($conexion);
+}
+}
 ?>
 <a href="mostrarCatalogo.php"><button>Volver</button></a>
 </body>

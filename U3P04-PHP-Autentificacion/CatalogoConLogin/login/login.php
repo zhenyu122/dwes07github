@@ -5,7 +5,7 @@ if(isset($_REQUEST["cerrarSesion"])){
     header("location:login.php");
 }
 if (isset($_SESSION["user"])){
-    header("location: index.php");
+    header("location: ../mostrarCatalogo.php");
 }else{
     $mensajeError="";
     if(isset($_POST['enviar'])){
@@ -17,18 +17,16 @@ if (isset($_SESSION["user"])){
         }else{
             $conexion = new mysqli("localhost","alumno","alumno","catalogo07");
             $resultado = $conexion->query("select * from usuario");
-            $n="";
             if($resultado->num_rows === 0) $mensajeError="No hay usuarios en la base de datos";
             while($fila=$resultado->fetch_assoc()) {
                 $mensajeError="";
-                $n.=$fila["login"]." user -->".$_POST["username"]."///";
                 if ($fila["login"]!=$_POST["username"]){
                     $mensajeError="El nombre de usuario no coincide";
                 }else if($fila["password"]!=$_POST["pass"]){
                     $mensajeError="La contraseña no coincide";
                 }else if(empty($mensajeError)){
                     $_SESSION["user"]=$_POST["username"];
-                    header("location: index.php");
+                    header("location: ../mostrarCatalogo.php");
                 }
             }
         }
@@ -56,7 +54,6 @@ if (isset($_SESSION["user"])){
            		<p><a href="alta.php">¿Aún no tienes cuenta? Haz clic aquí para crear una</a></p>
            		<?php if (!empty($mensajeError)){
            		   echo "<h3>".$mensajeError."</h3>";
-           		   echo $n;
                 }?>
             </div>
         </form>
