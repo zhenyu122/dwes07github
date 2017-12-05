@@ -19,7 +19,7 @@ if (isset($_POST["enviar"])){
                 if(!empty($conexion->error)){
                     $mensajeError=$conexion->error;
                 }else{
-                    header("location: login.php");
+                    header("location: ../mostrarCatalogo.php");
                 }
                 
             }

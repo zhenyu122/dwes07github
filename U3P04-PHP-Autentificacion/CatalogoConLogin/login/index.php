@@ -1,7 +1,7 @@
 <?php
 session_start();
 $mensajeError="";
-if (!isset($_SESSION["user"])){
+if (isset($_SESSION["user"])){
     header("location: login.php");
 }else{
     ?>
@@ -20,6 +20,15 @@ if (!isset($_SESSION["user"])){
     $conexion = new mysqli("localhost","alumno","alumno","catalogo07");
     $resultado = $conexion->query("select * from usuario");
     if($resultado->num_rows === 0) header("Location:logout.php");
+    /*while($fila=$resultado->fetch_assoc()) {
+        echo $_SESSION["user"]." ".$fila["login"];
+        if ($_SESSION["user"]!=$fila["login"]){
+            echo "no";
+        }else{
+            $nombre=$fila["nombre"];
+        }
+    
+    }*/
     $nombre="";
     while($fila=$resultado->fetch_assoc()) {
         if ($fila["login"]==$_SESSION["user"]){

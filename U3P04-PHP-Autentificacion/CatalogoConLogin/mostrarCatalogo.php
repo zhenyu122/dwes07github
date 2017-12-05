@@ -39,12 +39,10 @@ $servidor = "localhost";
 $usuario = "alumno";
 $clave = "alumno";
 $conexion = new mysqli($servidor,$usuario,$clave,"catalogo07");
-
 if ($conexion->connect_errno) {
     echo "<p>Error al establecer la conexión (" . $conexion->connect_errno . ") " . $conexion->connect_error . "</p>";
 }else
 $conexion->query("SET NAMES 'UTF8'");
-
 if (isset($_POST["enviar"])){
     if (isset($_POST["busqueda"])){
         $arBusca = explode(" ", $_POST["busqueda"]);
