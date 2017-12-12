@@ -192,9 +192,9 @@ while ($obra = $resultado->fetch_object('Obra')) {
 ?>
 <br>
 <a href="<?php echo $_SERVER["PHP_SELF"]?>"><button>Limpiar Filtros</button></a>
-        <p><a href="login/logout.php">Cerrar sesión por logout.php</a></p>
-        <p><a href="login/login.php?cerrarSesion=true">Cerrar sesión por parámetro</a></p>
-        <p><a href="login/baja.php">Eliminar cuenta</a></p>
+        <a href="login/logout.php"><input type="button" value="Cerrar sesión"/></a>
+        <?php /*<p><a href="login/login.php?cerrarSesion=true"><input type="button" value="Cerrar sesión"/></a></p><*/?>
+        <a href="login/baja.php"><input type="button" value="Eliminar cuenta"/></a>
 <?php 
 mysqli_close($conexion);
 }

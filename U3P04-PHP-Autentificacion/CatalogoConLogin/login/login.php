@@ -21,9 +21,9 @@ if (isset($_SESSION["user"])){
             while($fila=$resultado->fetch_assoc()) {
                 $mensajeError="";
                 if ($fila["login"]!=$_POST["username"]){
-                    $mensajeError="El nombre de usuario no coincide";
-                }else if($fila["password"]!=$_POST["pass"]){
-                    $mensajeError="La contraseña no coincide";
+                    $mensajeError="El nombre de usuario o la contraseña no coincide";
+                }else if(!password_verify($_POST["pass"], $fila["password"])){
+                    $mensajeError="El nombre de usuario o la contraseña no coincide";
                 }else if(empty($mensajeError)){
                     $_SESSION["user"]=$_POST["username"];
                     header("location: ../mostrarCatalogo.php");
@@ -50,7 +50,7 @@ if (isset($_SESSION["user"])){
                 <input type="text" name="username"><br>
                 <p>Password</p>
                 <input type="password" name="pass"><br><br>
-           		<input type="submit" name="enviar">
+           		<input type="submit" name="enviar" value="Entrar">
            		<p><a href="alta.php">¿Aún no tienes cuenta? Haz clic aquí para crear una</a></p>
            		<?php if (!empty($mensajeError)){
            		   echo "<h3>".$mensajeError."</h3>";

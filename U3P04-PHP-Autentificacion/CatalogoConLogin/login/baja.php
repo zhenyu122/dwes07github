@@ -11,7 +11,7 @@ if (isset($_POST["enviar"])){
         if($resultado->num_rows === 0) $mensajeError="No existe el usuario en la base de datos";
         while($fila=$resultado->fetch_assoc()) {
             $mensajeError="";
-            if($_POST["pass"]!=$fila["password"]){
+            if(!password_verify($_POST["pass"], $fila["password"])){
                 $mensajeError="No coinciden las contraseñas";
             }else{
                 $conexion->query("DELETE FROM usuario WHERE usuario.login = $user");
@@ -36,8 +36,8 @@ if (isset($_POST["enviar"])){
     <div>
         <p>Confirma la contraseña para borrar al usuario</p>
         <input type="password" name="pass"><br><br>
-   		<input type="submit" name="enviar">
-   		<p><a href="index.php">Volver a Index</a></p>
+   		<input type="submit" name="enviar" value="Confirmar">
+   		<a href="login.php"><input type="button" value="Cancelar"/></a>
    		<?php if (!empty($mensajeError)){
    		   echo "<h3>".$mensajeError."</h3>";
         }?>

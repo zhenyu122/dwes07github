@@ -9,13 +9,21 @@ if (isset($_POST["enviar"])){
         $conexion = new mysqli("localhost","alumno_rw","dwes","catalogo07");
         $resultado = $conexion->query("select * from usuario");
         
-        if($resultado->num_rows === 0) $mensajeError="No hay usuarios en la base de datos";
+        //if($resultado->num_rows === 0) $mensajeError="No hay usuarios en la base de datos";
+        if($resultado->num_rows === 0){
+            
+            $passwordHash = password_hash($_POST["pass"], PASSWORD_DEFAULT);
+        $conexion->query("INSERT INTO `usuario` (`login`, `password`, `nombre`, `admin`, `descripcion`)
+                    VALUES ('".$_POST["username"]."', '".$passwordHash."', '".$_POST["Nombre"]."', '".$_POST["cuenta"]."', '".$_POST["descripcion"]."');");
+        header("location: ../mostrarCatalogo.php");
+        }
         while($fila=$resultado->fetch_assoc()) {
             if ($_POST["username"]==$fila["login"]){
                 $mensajeError="Ya existe un usuario con ese nombre de usuario";
             }else{
+                $passwordHash = password_hash($_POST["pass"], PASSWORD_DEFAULT);
                 $conexion->query("INSERT INTO `usuario` (`login`, `password`, `nombre`, `admin`, `descripcion`) 
-                    VALUES ('".$_POST["username"]."', '".$_POST["pass"]."', '".$_POST["Nombre"]."', '".$_POST["cuenta"]."', '".$_POST["descripcion"]."');");
+                    VALUES ('".$_POST["username"]."', '".$passwordHash."', '".$_POST["Nombre"]."', '".$_POST["cuenta"]."', '".$_POST["descripcion"]."');");  
                 if(!empty($conexion->error)){
                     $mensajeError=$conexion->error;
                 }else{
