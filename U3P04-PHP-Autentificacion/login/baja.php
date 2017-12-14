@@ -32,6 +32,7 @@ if (isset($_POST["enviar"])){
 </style>
 </head>
 <body>
+<img src="img/encabezado/encabezado.jpg" /><h2>Zhenyu Guo</h2>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"],ENT_QUOTES,"UTF-8")?>" method="post">
     <div>
         <p>Confirma la contraseña para borrar al usuario</p>
