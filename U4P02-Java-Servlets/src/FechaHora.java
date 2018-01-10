@@ -30,7 +30,7 @@ public class FechaHora extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><meta charset='UTF-8'/><title>Primer Servlet</title></head>");
+		out.println("<html><head><meta charset='UTF-8'/><title>Segundo Servlet</title></head>");
 		out.println("<body><h1>Fecha y Hora</h1>");
 		out.println("<p>" + new Date() + "</p>");
 		out.println("<p><a href='./index.html'>Volver</a></p>");
