@@ -13,24 +13,36 @@
     </form>
 </fieldset>
 <?php
-function leerArchivo($ruta){
-    echo "<ul>";
-    $archivo= fopen($ruta, "r") or die ("Imposible abrir el archivo");
-    while(!feof($archivo)){
-        echo "<li>".fgets($archivo);
-    }
-    echo "</ul>";
-}
 $rutaArchivo = "files/nombres.txt";
 $ar=file($rutaArchivo);
 
 if (isset($_POST["enviar"])){
    if($_POST["modificar"]=="borrar"){
-       echo "borrar";
+       if (!in_array($_POST["nombre"], $ar)){
+           echo "<h3>No existe el nombre</h3>";
+       }else{
+           //$encontrado=false;
+           for($i=0;$i<count($ar);$i++){
+               if ($ar[$i]==$_POST["nombre"]){
+                  // $encontrado=true;
+                   //$pos=$i;
+                   unset($ar[$i]);
+               }
+           }
+           unlink($rutaArchivo);
+           print_r($ar);
+           /*Falta probar las lineas de encima y volcar el array en n fichero nuevo*/
+           
+       }
    }else if($_POST["modificar"]=="añadir"){
-       echo $_POST["nombre"];
        if (in_array($_POST["nombre"], $ar)){
            echo "<h3>Ya existe el nombre</h3>";
+       }else{
+           echo "entra";
+           $archivo=fopen($rutaArchivo, "a") or die ("Imposible abrir el archivo");
+           fwrite($archivo, $_POST["nombre"]."\n");
+           fclose($archivo);
+           header("location:GestorNombre.php");
        }
    }
 }
@@ -38,13 +50,11 @@ if(empty($ar)){
     echo "<h2>El array está vacio</h2>";
 }else{
     sort($ar);
-    unlink($rutaArchivo);
-    $archivo = fopen($rutaArchivo, "w+") or die("Imposible  abrir el archivo para escritura");
-    foreach ($ar as $datos){
-        fwrite($archivo,$datos);
+    echo "<ul>";
+    for($i=0;$i<count($ar);$i++){
+        echo "<li>$ar[$i]"."<br>";
     }
-    fclose($archivo);
-    leerArchivo($rutaArchivo);
+    echo "</ul>";
 }
 ?>
 </body>
