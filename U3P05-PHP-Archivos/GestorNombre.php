@@ -15,7 +15,6 @@
 <?php
 $rutaArchivo = "files/nombres.txt";
 $ar=file($rutaArchivo);
-
 if (isset($_POST["enviar"])){
    if($_POST["modificar"]=="borrar"){
        if (!in_array($_POST["nombre"], $ar)){
@@ -35,14 +34,15 @@ if (isset($_POST["enviar"])){
            
        }
    }else if($_POST["modificar"]=="añadir"){
-       if (in_array($_POST["nombre"], $ar)){
+     
+      // if (in_array($_POST["nombre"], $ar)){
+       if (buscar($_POST["nombre"],$ar)){
            echo "<h3>Ya existe el nombre</h3>";
        }else{
-           echo "entra";
            $archivo=fopen($rutaArchivo, "a") or die ("Imposible abrir el archivo");
            fwrite($archivo, $_POST["nombre"]."\n");
            fclose($archivo);
-           header("location:GestorNombre.php");
+           //header("location:GestorNombre.php");
        }
    }
 }
@@ -55,6 +55,19 @@ if(empty($ar)){
         echo "<li>$ar[$i]"."<br>";
     }
     echo "</ul>";
+}
+function buscar($x){
+    global $ar;
+    $encontrado=false;
+    print_r($ar);
+    for($i=0;$i<count($ar);$i++){
+        if (strcasecmp($x, $ar[$i])){
+            echo $x." - ".$ar[$i];
+            $encontrado=true;
+        }else
+            echo "no";
+    }
+    return $encontrado;
 }
 ?>
 </body>
