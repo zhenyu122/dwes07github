@@ -9,4 +9,36 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <context-param>
+  	<param-name>srv_bd</param-name>
+  	<param-value>localhost:3306</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>usr_bd_r</param-name>
+  	<param-value>alumno</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>psw_bd_r</param-name>
+  	<param-value>alumno</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>usr_bd_rw</param-name>
+  	<param-value>alumno_rw</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>psw_bd_rw</param-name>
+  	<param-value>dwes</param-value>
+  </context-param>
+  <servlet>
+  	<servlet-name>MuestraVariablesServidor</servlet-name>
+  	<servlet-class>servlets.MuestraVariablesServidor</servlet-class>
+  	<init-param>
+  		<param-name>servlet3</param-name>
+  		<param-value>Servlet3</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>servlet4</param-name>
+  		<param-value>Servlet4</param-value>
+  	</init-param>
+  </servlet>
 </web-app>
