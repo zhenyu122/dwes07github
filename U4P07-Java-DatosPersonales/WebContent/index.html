@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>U4P07</title>
+</head>
+<body>
+	<form action="./ValidarFormulario">
+		<label for="nombre">Nombre</label>
+		<input type="text" name="nombre"><br>
+		<label for="clave">Contraseña</label>
+		<input type="password" name="clave"><br>
+		<label for="fecha">Fecha Nacimiento</label>
+		<input type="date" name="fecha"><br>
+		<label for="fecha">Edad</label>
+		<input type="number" name="edad"><br>
+		<label for="sexo">Sexo:  </label>
+		<input type="radio" name="sexo">Hombre
+		<input type="radio" name="sexo">Mujer<br>
+		<input type="checkbox" name="suscripcion"><label for="suscripcion">Quiero recibir información</label><br>
+		<label for="campo">Selecciona un ciclo</label>
+		<select name="campo">
+			<option>DAW</option>
+			<option>ASIR</option>
+			<option>DAM</option>
+		</select><br>
+		<label for="comentario">Comentario</label><br>
+		<textarea name="comentario" rows="10" cols="10"></textarea><br>
+		<input type="submit" name="enviar" value="Enviar">
+	</form>
+</body>
+</html>
