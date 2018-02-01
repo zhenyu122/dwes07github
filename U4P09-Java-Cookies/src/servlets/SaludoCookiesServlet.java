@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
+//import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -32,7 +32,7 @@ public class SaludoCookiesServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext contexto = getServletContext();
+		//ServletContext contexto = getServletContext();
 		response.setContentType("text/html;UTF-8");
 		PrintWriter out = response.getWriter();
 
@@ -50,11 +50,6 @@ public class SaludoCookiesServlet extends HttpServlet {
 				response.addCookie(nuevaCookieUsuario);
 				response.sendRedirect(request.getRequestURI());
 			}
-			/*if(request.getParameter("actualizado")!=null) {
-				Cookie cookieModificada = new Cookie("usuario",request.getParameter("actualizado"));
-				response.addCookie(cookieModificada);
-				response.sendRedirect(request.getRequestURI());
-			}*/
 		}
 		if (request.getParameter("eliminarCookie") != null) {
 			Cookie cookieCaducada = new Cookie("usuario","");
