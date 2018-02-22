@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import catalogo.Autor;
 import catalogo.Obra;
@@ -35,6 +36,7 @@ public class MostrarCatalogoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		Obra obra;Autor autor;
 		PrintWriter out =response.getWriter();
 		request.setCharacterEncoding("UTF-8");
@@ -54,19 +56,34 @@ public class MostrarCatalogoServlet extends HttpServlet {
 		  // Paso 3: Crear sentencias SQL, utilizando objetos de tipo Statement
 		  sentencia = conn.createStatement();
 		  String consulta = "SELECT obras.*,autor.* FROM obras,autor where Compania=autor.ID";
-		  	  
-		  if(request.getParameter("orden")!=null) {
+		  
+		  if(request.getParameter("orden")!=null && request.getParameter("autor")!=null) {
 			  if(request.getParameter("orden").equalsIgnoreCase("asc")) {
-				  consulta += " order by Titulo asc";
+				  consulta =session.getAttribute("consultaAutor")+" order by Titulo asc";
 			  }else if(request.getParameter("orden").equalsIgnoreCase("desc")) {
-				  consulta += " order by Titulo desc";
+				  consulta =session.getAttribute("consultaAutor")+" order by Titulo desc";
+			  }
+		  }else {
+			  if(request.getParameter("orden")!=null) {
+				  if(request.getParameter("orden").equalsIgnoreCase("asc")) {
+					  consulta += " order by Titulo asc";
+				  }else if(request.getParameter("orden").equalsIgnoreCase("desc")) {
+					  consulta += " order by Titulo desc";
+				  }
+			  }
+			  if(request.getParameter("autor")!=null) {
+				  consulta = "SELECT autor.*,obras.* FROM obras,autor where Compania=autor.ID and autor.ID="+request.getParameter("autor");
+				  session.setAttribute("consultaAutor", consulta);
+				  session.setAttribute("Autor", request.getParameter("autor"));
+				 /* if(request.getParameter("orden")!=null) {
+					  if(request.getParameter("orden").equalsIgnoreCase("asc")) {
+						  consulta=request.getAttribute("consultaAutor")+" order by Titulo asc";
+					  }else if(request.getParameter("orden").equalsIgnoreCase("desc")){
+						  consulta=request.getAttribute("consultaAutor")+" order by Titulo desc";
+					  }
+				  }*/
 			  }
 		  }
-	
-		  if(request.getParameter("autor")!=null) {
-			  consulta = "SELECT autor.*,obras.* FROM obras,autor where Compania=autor.ID and autor.ID="+request.getParameter("autor");
-		  }
-
 		  if(request.getParameter("busqueda")!=null) {
 			  String busqueda= request.getParameter("busqueda");
 			  String[] arBusqueda= busqueda.split(" ");
@@ -101,25 +118,27 @@ public class MostrarCatalogoServlet extends HttpServlet {
 		  		+ "<meta charset='UTF-8'/></head><body>");
 
 		  ///Busqueda
-		  
-		  
 		  out.println("<form action='"+request.getRequestURI()+"' method='post'>");
 		  out.println("<input class='form-control' placeholder='Buscar' type='text' name='busqueda'/>");
 		  out.println("<input type='submit' name='enviar' value='Enviar'/>");
 		  
 		  
-		  //////
 		  out.println("<table border='1'>");
 		  out.println("<thead><tr>");
-		  
-		  
 		 /* if(request.getParameter("autor")!=null) {
 			  out.println("<th>Nombre Compania</th><th>Sede Compania</th><th>Imagen Compania</th>");
 		  }*/
-		  out.println("<th>Titulo<a href='./MostrarCatalogo?orden=asc'>&#9650</a><a href='./MostrarCatalogo?orden=desc'>&#9660</a></th>"
-		  		+ "<th>Imagen</th>"
-		  		+ "<th>Compania</th>"
-		  		+ "</tr></thead><tbody>");
+		  if(request.getParameter("autor")!=null) {
+			  out.println("<th>Titulo<a href='./MostrarCatalogo?orden=asc&autor="+session.getAttribute("Autor")+"'>&#9650</a><a href='./MostrarCatalogo?orden=desc&autor="+session.getAttribute("Autor")+"'>&#9660</a></th>"
+				  		+ "<th>Imagen</th>"
+				  		+ "<th>Compania</th>"
+				  		+ "</tr></thead><tbody>");
+		  }else {
+			  out.println("<th>Titulo<a href='./MostrarCatalogo?orden=asc'>&#9650</a><a href='./MostrarCatalogo?orden=desc'>&#9660</a></th>"
+			  		+ "<th>Imagen</th>"
+			  		+ "<th>Compania</th>"
+			  		+ "</tr></thead><tbody>");
+		  }
 		  boolean done=false;
 		  while (rset.next()) {
 			obra=new Obra(rset.getInt("obras.ID"), rset.getString("Titulo"), rset.getString("Compania"),rset.getString("obras.Imagen"),rset.getString("Nombre"));
