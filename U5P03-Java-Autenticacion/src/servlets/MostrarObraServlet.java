@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,6 +39,7 @@ public class MostrarObraServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		response.setContentType("text/html; charset=UTF-8");
 		int idObra = 0;
+		ServletContext contexto=getServletContext();
 		boolean erroridObraAusente = false;
 		boolean erroridObraFormato = false;
 		PrintWriter out = response.getWriter();
